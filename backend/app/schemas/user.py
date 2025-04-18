@@ -19,6 +19,15 @@ class UserUpdate(BaseModel):
 # Schema for reading user data
 class User(UserBase):
     id: int
+    is_active: bool = True
 
     class Config:
-        from_attributes = True # This replaces orm_mode=True in Pydantic v2
+        orm_mode = True
+
+class UserLogin(BaseModel):
+    username: str
+    password: str
+
+class Token(BaseModel):
+    access_token: str
+    token_type: str = "bearer"
